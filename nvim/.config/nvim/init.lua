@@ -50,7 +50,13 @@ require("lazy").setup({
   {
     "nvim-telescope/telescope.nvim", tag = "0.1.5",
     dependencies = { "nvim-lua/plenary.nvim" },
-    opts = {},
+    opts = {
+      defaults = {
+        mappings = {
+          ["<C-u>"] = false
+        },
+      }
+    },
     config = function(opts)
       local builtin = require('telescope.builtin')
 
