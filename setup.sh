@@ -46,6 +46,7 @@ setup_desktop_environment() {
         nvidia \
         obsidian \
         papirus-icon-theme \
+        polybar \
         rofi \
         xorg-server \
         xorg-xinit \
