@@ -2,12 +2,14 @@
 
 set -euo pipefail
 
+DOTFILES_REPO=https://github.com/vbjeronimo/.dotfiles.git
+
 setup_pacman() {
     echo "[*] Starting pacman setup..."
 
-    sed -i 's/#Color/Color/' /etc/pacman.conf
-    sed -i 's/#ParallelDownloads/ParallelDownloads/' /etc/pacman.conf
-    sed -i 's/#VerbosePkgLists/VerbosePkgLists/' /etc/pacman.conf
+    sudo sed -i 's/#Color/Color/' /etc/pacman.conf
+    sudo sed -i 's/#ParallelDownloads/ParallelDownloads/' /etc/pacman.conf
+    sudo sed -i 's/#VerbosePkgLists/VerbosePkgLists/' /etc/pacman.conf
 
     echo "[*] Pacman setup complete!"
 }
@@ -15,7 +17,7 @@ setup_pacman() {
 setup_base_system() {
     echo "[*] Starting base system setup..."
 
-    pacman -S --noconfirm --needed \
+    sudo pacman -S --noconfirm --needed \
         base-devel \
         man-db \
         man-pages \
@@ -23,13 +25,11 @@ setup_base_system() {
 
     if lscpu | grep "Vendor ID" | grep -q "AMD"; then
         echo "[**] Installing AMD microcode..."
-        pacman -S --noconfirm --needed amd-ucode
+        sudo pacman -S --noconfirm --needed amd-ucode
     elif lscpu | grep "Vendor ID" | grep -q "Intel"; then
         echo "[**] Installing Intel microcode..."
-        pacman -S --noconfirm --needed intel-ucode
+        sudo pacman -S --noconfirm --needed intel-ucode
     fi
-
-    # TODO: check if there's anything else to setup the microcode
 
     echo "[*] Base system setup complete!"
 }
@@ -38,11 +38,15 @@ setup_desktop_environment() {
     echo "[*] Starting desktop environment setup..."
 
     # TODO: add a check for the video driver based on the GPU being used
-    pacman -S --noconfirm --needed \
+    sudo pacman -S --noconfirm --needed \
         autorandr \
         feh \
+        firefox \
         i3-wm \
         nvidia \
+        obsidian \
+        papirus-icon-theme \
+        rofi \
         xorg-server \
         xorg-xinit \
         xorg-xrandr
@@ -53,9 +57,15 @@ setup_desktop_environment() {
 setup_shell() {
     local default_shell="bash"
     local shell_packages=(
+        alacritty
         bat
         exa
+        git
+        neovim
+        pass
+        stow
         tmux
+        xclip
     )
     local fonts=(
         otf-commit-mono-nerd
@@ -64,14 +74,15 @@ setup_shell() {
     echo "[*] Starting shell setup..."
 
     echo "[**] Installing packages..."
-    pacman -S --noconfirm --needed \
+    sudo pacman -S --noconfirm --needed \
         "$default_shell" \
         "${shell_packages[@]}" \
-        "${fonts[@]}" \
-        starship
+        "${fonts[@]}"
 
-    echo "[**] Changing default shell to $default_shell for user $SUDO_USER..."
-    chsh -s $(which "$default_shell") "$SUDO_USER"
+    if [[ "$SHELL" != "$(which "$default_shell")" ]]; then
+        echo "[**] Changing default shell to $default_shell for user $USER..."
+        sudo chsh -s "$(which "$default_shell")" "$USER"
+    fi
 
     echo "[**] Shell setup complete!"
 }
@@ -79,50 +90,70 @@ setup_shell() {
 setup_syncthing() {
     echo "[*] Starting syncthing setup..."
 
-    sudo pacman -S --noconfirm --needed \
-        syncthing
+    sudo pacman -S --noconfirm --needed syncthing
 
     echo "[**] Enabling and starting syncthing service..."
-    sudo systemctl enable --now syncthing@"${SUDO_USER}.service"
+    sudo systemctl enable --now syncthing@"${USER}.service"
 
     echo "[**] Syncthing setup complete!"
 }
 
+setup_dotfiles() {
+    local dotfiles_dir="$HOME"/.dotfiles
+
+    echo "[*] Setting up dotfiles dir..."
+
+    if ! [[ -d "$dotfiles_dir" ]];then
+        echo "[**] Dotfiles dir not found. Cloning it..."
+
+        git clone "$DOTFILES_REPO" "$dotfiles_dir"
+        cd "$dotfiles_dir" || exit
+
+        # this is a clever trick to force stow to create the symlinks that we need here
+        # and then restoring the files to their original content once the symlinks exist
+        stow --adopt */
+        git restore .
+    else
+        echo "[**] Dotfiles already cloned. Restowing..."
+        cd "$dotfiles_dir" || exit
+        stow --restow */
+    fi
+
+    cd -
+
+    echo "[*] Dotfiles dir setup complete!"
+}
+
+create_home_dirs() {
+    echo "[*] Creating home directories..."
+
+    cd ~
+
+    mkdir -p \
+        documents \
+        downloads \
+        pictures/screenshots \
+        pictures/wallpapers \
+        projects \
+        second-brain \
+
+    cd -
+
+    echo "[*] Home directories created!"
+}
+
 echo "[*] Enabling sshd.service..."
-systemctl enable --now sshd.service
+sudo systemctl enable --now sshd.service
 
 setup_pacman
 
+sudo pacman -Syu --noconfirm
+
 setup_base_system
-
-pacman -Syu --noconfirm
-
-pacman -S --noconfirm --needed \
-    alacritty \
-    bat \
-    firefox \
-    git \
-    neovim \
-    obsidian \
-    papirus-icon-theme \
-    pass \
-    rofi \
-    stow \
-    tmux \
-    xclip
-
-(cd /home/"$SUDO_USER"; \
-    sudo -u "${SUDO_USER}" mkdir -p \
-        documents \
-        downloads \
-        obsidian \
-        pictures/screenshots \
-        pictures/wallpapers \
-        projects
-)
-
 setup_shell
 setup_desktop_environment
 setup_syncthing
+setup_dotfiles
+create_home_dirs
 
 # TODO: find a better way to setup the xbdkeymaps (it goes back to us after an update)
