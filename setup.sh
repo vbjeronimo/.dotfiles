@@ -61,7 +61,6 @@ setup_shell() {
         bat
         exa
         git
-        neovim
         pass
         stow
         tmux
@@ -85,6 +84,18 @@ setup_shell() {
     fi
 
     echo "[**] Shell setup complete!"
+}
+
+setup_dev_environment() {
+    echo "[*] Setting up dev environment..."
+
+    sudo pacman -S --noconfirm --needed \
+        fd \
+        lazygit \
+        neovim \
+        ripgrep
+
+    echo "[*] Dev environment setup complete!"
 }
 
 setup_syncthing() {
@@ -151,6 +162,7 @@ sudo pacman -Syu --noconfirm
 
 setup_base_system
 setup_shell
+setup_dev_environment
 setup_desktop_environment
 setup_syncthing
 setup_dotfiles
