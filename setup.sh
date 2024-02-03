@@ -119,7 +119,7 @@ setup_dotfiles() {
         stow --restow */
     fi
 
-    cd -
+    cd - > /dev/null || exit
 
     echo "[*] Dotfiles dir setup complete!"
 }
@@ -127,7 +127,7 @@ setup_dotfiles() {
 create_home_dirs() {
     echo "[*] Creating home directories..."
 
-    cd ~
+    cd ~ || exit
 
     mkdir -p \
         documents \
@@ -137,7 +137,7 @@ create_home_dirs() {
         projects \
         second-brain \
 
-    cd -
+    cd - > /dev/null || exit
 
     echo "[*] Home directories created!"
 }
