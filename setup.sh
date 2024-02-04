@@ -65,6 +65,8 @@ setup_shell() {
         pass
         stow
         tmux
+        unzip
+        wget
         xclip
     )
     local fonts=(
