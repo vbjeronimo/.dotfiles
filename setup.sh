@@ -92,6 +92,7 @@ setup_dev_environment() {
 
     sudo pacman -S --noconfirm --needed \
         fd \
+        go \
         lazygit \
         neovim \
         npm \
