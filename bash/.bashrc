@@ -7,6 +7,9 @@
 
 PS1='[\u@\h \W]\$ '
 
+export DOTFILES="$HOME"/.dotfiles
+export PATH="$HOME/bin:$PATH"
+
 alias l="exa"
 alias ls="exa"
 alias ll="exa --long --all --icons --git --total-size"
