@@ -104,6 +104,12 @@ require('lazy').setup({
   },
 
   {
+    'windwp/nvim-autopairs',
+    event = "InsertEnter",
+    opts = {} -- this is equalent to setup({}) function
+  },
+
+  {
     -- Set lualine as statusline
     'nvim-lualine/lualine.nvim',
     enabled = false,
@@ -544,6 +550,13 @@ cmp.setup {
     { name = 'path' },
   },
 }
+
+-- If you want insert `(` after select function or method item
+local cmp_autopairs = require('nvim-autopairs.completion.cmp')
+cmp.event:on(
+  'confirm_done',
+  cmp_autopairs.on_confirm_done()
+)
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
