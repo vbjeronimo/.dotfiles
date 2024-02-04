@@ -94,6 +94,7 @@ setup_dev_environment() {
         fd \
         lazygit \
         neovim \
+        npm \
         ripgrep
 
     echo "[*] Dev environment setup complete!"
