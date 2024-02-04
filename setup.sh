@@ -26,6 +26,7 @@ setup_shell() {
         exa
         git
         pass
+        starship
         stow
         tmux
         xclip
