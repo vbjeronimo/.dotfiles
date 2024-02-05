@@ -8,6 +8,8 @@
 PS1='[\u@\h \W]\$ '
 
 export DOTFILES="$HOME"/.dotfiles
+export SECOND_BRAIN="$HOME"/second-brain
+
 export PATH="$HOME/bin:$PATH"
 
 alias l="exa"
