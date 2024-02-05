@@ -1,0 +1,36 @@
+#!/bin/bash
+
+# Creates a zettelkasten note inside my second brain's inbox
+#
+# Inspired by Mischa van den Burg's `zet` script
+# (https://github.com/mischavandenburg)
+
+set -eu
+
+note_name=${1:-}
+if [[ -z "$note_name" ]]; then
+
+	read -rp "Enter note name: " note_name
+fi
+
+path_to_note="$SECOND_BRAIN"/0-inbox/"$note_name"
+
+if [[ -e "$path_to_note" ]]; then
+	echo "Error: note $path_to_note already exists. Exiting..."
+	exit 1
+fi
+
+cat > "$path_to_note" << EOF
+# 
+
+
+
+Links:
+
+
+$(date +%Y%m%dT%H%M%S)
+EOF
+
+nvim '+normal ggzzi' "$path_to_note"
+
+echo "New note created at $path_to_note"
