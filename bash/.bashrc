@@ -23,6 +23,7 @@ alias tt="exa --tree --all --icons"
 alias tf="exa --tree --all --icons --only-files"
 alias td="exa --tree --all --icons --only-dirs"
 
+alias sb="cd $SECOND_BRAIN"
 alias ".."="cd .."
 
 #================================================
