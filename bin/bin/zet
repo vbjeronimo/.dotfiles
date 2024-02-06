@@ -13,7 +13,7 @@ if [[ -z "$note_name" ]]; then
 	read -rp "Enter note name: " note_name
 fi
 
-path_to_note="$SECOND_BRAIN"/0-inbox/"$note_name"
+path_to_note="${SECOND_BRAIN}/0-inbox/${note_name}.md"
 
 if [[ -e "$path_to_note" ]]; then
 	echo "Error: note $path_to_note already exists. Exiting..."
@@ -25,7 +25,7 @@ cat > "$path_to_note" << EOF
 
 
 
-Links:
+## Links:
 
 
 $(date +%Y%m%dT%H%M%S)
