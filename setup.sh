@@ -94,6 +94,16 @@ create_home_dirs() {
     echo "[*] Home directories created!"
 }
 
+install_apps() {
+    echo "[*] Installing apps..."
+
+    yay -S --noconfirm --needed \
+        discord \
+        spotify
+
+    echo "[*] Apps installed!"
+}
+
 echo "[*] Enabling sshd.service..."
 sudo systemctl enable --now sshd.service
 
@@ -104,3 +114,4 @@ setup_dev_environment
 setup_desktop_environment
 setup_syncthing
 create_home_dirs
+install_apps
