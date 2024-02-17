@@ -99,7 +99,8 @@ install_apps() {
 
     yay -S --noconfirm --needed \
         discord \
-        spotify
+        spotify \
+        spotify-tui
 
     echo "[*] Apps installed!"
 }
