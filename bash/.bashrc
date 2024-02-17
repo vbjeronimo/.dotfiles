@@ -14,7 +14,7 @@ export PATH="$HOME/bin:$PATH"
 
 alias l="exa"
 alias ls="exa"
-alias ll="exa --long --all --icons --git --total-size"
+alias ll="exa --long --all --icons --git --total-size --group-directories-first"
 alias lf="exa --long --all --icons --git --only-files"
 alias ld="exa --long --all --icons --git --only-dirs --total-size" 
 
