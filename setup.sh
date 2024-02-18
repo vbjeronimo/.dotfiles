@@ -55,12 +55,21 @@ setup_dev_environment() {
     echo "[*] Setting up dev environment..."
 
     sudo pacman -S --noconfirm --needed \
+        docker \
+        docker-buildx \
+        docker-compose \
         fd \
         go \
         lazygit \
         neovim \
         npm \
         ripgrep
+
+
+    if ! groups | grep docker; then
+        echo "[*] Adding $USER to the docker group..."
+        sudo usermod -aG docker "$USER"
+    fi
 
     echo "[*] Dev environment setup complete!"
 }
@@ -100,7 +109,10 @@ install_apps() {
     yay -S --noconfirm --needed \
         discord \
         spotify \
+        spotifyd \
         spotify-tui
+
+    systemctl --user enable spotifyd.service --now
 
     echo "[*] Apps installed!"
 }
