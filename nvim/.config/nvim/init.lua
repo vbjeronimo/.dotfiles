@@ -313,7 +313,7 @@ vim.o.relativenumber = true
 
 vim.o.cursorline = true
 
---vim.o.expandtab = true
+vim.o.expandtab = true
 vim.o.tabstop = 4
 vim.o.shiftwidth = 4
 
@@ -373,6 +373,25 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
   group = highlight_group,
   pattern = '*',
+})
+
+local indentation_group = vim.api.nvim_create_augroup("FiletypeIndent", { clear = true })
+vim.api.nvim_create_autocmd("BufEnter", {
+  pattern = { "*.lua" },
+  group = indentation_group,
+  callback = function()
+    vim.o.shiftwidth = 2
+    vim.o.tabstop = 2
+  end
+})
+
+local tab_group = vim.api.nvim_create_augroup("TabExpansion", { clear = true })
+vim.api.nvim_create_autocmd("BufEnter", {
+  pattern = {"*.go"},
+  group = tab_group,
+  callback = function()
+    vim.o.expandtab = true
+  end
 })
 
 -- [[ Configure Telescope ]]
