@@ -273,7 +273,17 @@ require('lazy').setup({
         cmp_autopairs.on_confirm_done()
       )
     end,
-  }
+  },
+
+  {
+    dir = "~/projects/palette.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+    },
+    enabled = true,
+    event = "VeryLazy",
+    config = true,
+  },
 
   -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
   --       These are some example plugins that I've included in the kickstart repository.
