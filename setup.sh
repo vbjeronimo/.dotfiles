@@ -71,6 +71,8 @@ setup_dev_environment() {
         sudo usermod -aG docker "$USER"
     fi
 
+    sudo systemctl enable --now docker.socket containerd.service
+
     echo "[*] Dev environment setup complete!"
 }
 
