@@ -1,26 +1,7 @@
-#######################
-# config starts here: #
-#######################
-
-# Font for window titles. Will also be used by the bar unless a different font
-# is used in the bar {} block below.
-# This font is widely installed, provides lots of unicode glyphs, right-to-left
-# text rendering and scalability on retina/hidpi displays (thanks to pango).
-# font pango: Noto Sans Regular 10
-font pango: CommitMono Nerd Font 10
-
 set $mod Mod4
-
-#####################
-# workspace layout: #
-#####################
 
 # default i3 tiling mode:
 workspace_layout default
-
-##############################
-# extra options for windows: #
-##############################
 
 #border indicator on windows:
 new_window pixel 1
