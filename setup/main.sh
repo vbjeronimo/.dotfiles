@@ -50,17 +50,11 @@ case "$command" in
             chmod 644 "${BASE_DIR}"/*"${component}"/*${script}.sh
         done
         ;;
-    new)
-        echo "new $@"
-        ;;
-    edit)
-        echo "edit $@"
-        ;;
-    delete)
-        echo "delete $@"
-        ;;
     show)
-        echo "show $@"
+        IFS=: read -r component target <<< "$1"
+        IFS=, read -ra scripts <<< "$target"
+
+        cat "${BASE_DIR}"/*"${component}"/*${script}.sh
         ;;
     *)
         echo "Error: unknown command: $command"
