@@ -38,8 +38,11 @@ case "$command" in
         fi
         ;;
     list)
-        find "${BASE_DIR}" -type d -exec run-parts --test --regex '.*' {} \; \
-            | tree --fromfile
+        if [[ "$#" -eq 0 ]]; then
+            find "${BASE_DIR}" -type d -exec run-parts --test --regex '.*' {} \; | tree --fromfile
+        else
+            find "${BASE_DIR}"/*"$1" -type d -exec run-parts --test --regex '.*' {} \; | tree --fromfile
+        fi
         ;;
     enable)
         IFS=: read -r component target <<< "$1"
