@@ -16,7 +16,26 @@ shift
 
 case "$command" in
     setup)
-        echo "setup $@"
+        if [[ "$#" -eq 0 ]]; then
+            echo "Running all component scripts"
+            find "${BASE_DIR}" -type d -exec run-parts --regex '.*' {} \;
+        else
+            for arg in "$@"; do
+                IFS=: read -r component target <<< "$arg"
+                IFS=, read -ra scripts <<< "$target"
+
+                if [[ "${#scripts[@]}" -eq 0 ]]; then
+                    echo "Running all scripts for $component"
+                    run-parts --exit-on-error --regex '.*' "${BASE_DIR}"/*"${component}"
+                else
+                    echo "Running $component:$target"
+                    for script in "${scripts[@]}"; do
+                        bash -c "${BASE_DIR}"/*"${component}/"/*"${script}.sh"
+                    done
+                fi
+
+            done
+        fi
         ;;
     list)
         find "${BASE_DIR}" -type d -exec run-parts --test --regex '.*' {} \; \
