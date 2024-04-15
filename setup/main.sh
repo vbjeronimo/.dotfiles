@@ -4,8 +4,6 @@ set -e
 
 BASE_DIR="/home/vitor/wip-dotfiles/setup/components"
 
-DEFAULT_MOD="755"
-
 if [[ "$#" -eq 0 ]]; then
     echo "usage: ..."
     exit 1
@@ -50,12 +48,12 @@ case "$command" in
 
         if [[ "${#scripts[@]}" -eq 0 ]]; then
             echo "Enabling all scripts in $component"
-            chmod "$DEFAULT_MOD" "${BASE_DIR}"/*"${component}"/*.sh
+            chmod u+x "${BASE_DIR}"/*"${component}"/*.sh
         fi
 
         for script in "${scripts[@]}"; do
             echo "Enabling script '$script' in $component"
-            chmod "$DEFAULT_MOD" "${BASE_DIR}"/*"${component}"/*${script}.sh
+            chmod u+x "${BASE_DIR}"/*"${component}"/*${script}.sh
         done
         ;;
     disable)
@@ -64,12 +62,12 @@ case "$command" in
 
         if [[ "${#scripts[@]}" -eq 0 ]]; then
             echo "Disabling all scripts in $component"
-            chmod 644 "${BASE_DIR}"/*"${component}"/*.sh
+            chmod a-x "${BASE_DIR}"/*"${component}"/*.sh
         fi
 
         for script in "${scripts[@]}"; do
             echo "Disabling script '$script' in $component"
-            chmod 644 "${BASE_DIR}"/*"${component}"/*${script}.sh
+            chmod a-x "${BASE_DIR}"/*"${component}"/*${script}.sh
         done
         ;;
     show)
