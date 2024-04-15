@@ -1,0 +1,56 @@
+#!/bin/bash
+
+set -e
+
+NEOVIM_VERSION="v0.9.5"
+
+echo "[*] Updating apt cache"
+sudo apt-get update
+
+echo "[*] Updating all packages"
+sudo apt-get upgrade -y
+
+echo "[*] Installing system essentials"
+sudo apt-get install -y --no-upgrade \
+    curl \
+    git \
+    ssh
+
+echo "[*] Setting up desktop environment"
+sudo apt-get install -y --no-upgrade \
+    papirus-icon-theme \
+    rofi \
+    sway \
+    waybar
+
+echo "[*] Installing alacritty"
+if grep -qi "ubuntu" /etc/*-release; then
+    sudo snap install --classic alacritty
+elif grep -qi "debian" /etc/*-release; then
+    sudo apt-get install -y --no-upgrade alacritty
+fi
+
+echo "[*] Installing Neovim from source"
+if ! command -v nvim &> /dev/null; then
+    sudo apt-get install -y --no-upgrade \
+        build-essential \
+        cmake \
+        curl \
+        gettext \
+        ninja-build \
+        unzip
+
+    sudo git clone https://github.com/neovim/neovim /opt/neovim
+    (
+        cd /opt/neovim
+        git checkout "$NEOVIM_VERSION"
+        sudo make CMAKE_BUILD_TYPE=RelWithDebInfo
+        sudo make installcd build && cpack -G DEB && sudo dpkg -i nvim-linux64.deb
+    )
+fi
+
+echo "[*] Setting up dotfiles"
+sudo apt-get install -y --no-upgrade \
+    stow
+
+echo "[*] Done!"
