@@ -2,6 +2,8 @@
 
 set -e
 
+echo "[*] Starting pre-setup script"
+
 echo "[*] Updating apt cache"
 sudo apt-get update
 
