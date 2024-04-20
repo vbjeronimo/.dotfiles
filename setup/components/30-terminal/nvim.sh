@@ -13,6 +13,7 @@ fi
 
 echo "[*] Installing Neovim from source"
 
+echo "[*] Installing build dependencies"
 sudo apt-get install -y --no-upgrade \
     build-essential \
     cmake \
@@ -21,6 +22,7 @@ sudo apt-get install -y --no-upgrade \
     ninja-build \
     unzip
 
+echo "[*] Cloning and building Neovim (version $NEOVIM_VERSION)"
 sudo git clone https://github.com/neovim/neovim /opt/neovim
 (
     cd /opt/neovim
