@@ -116,7 +116,7 @@ if ! shopt -oq posix; then
   fi
 fi
 
-bind -x '"\C-f":". ~/.local/bin/tmux-sessionizer"'
+bind -x '"\C-f":"bash ~/.local/bin/tmux-sessionizer"'
 
 alias "cdr"='cd $(git rev-parse --show-toplevel)'
 
