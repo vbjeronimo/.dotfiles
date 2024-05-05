@@ -2,7 +2,7 @@
 
 set -e
 
-BASE_DIR="/home/vitor/wip-dotfiles/setup/components"
+BASE_DIR="${ENGI_DIR}/components"
 
 if [[ "$#" -eq 0 ]]; then
     echo "usage: ..."
