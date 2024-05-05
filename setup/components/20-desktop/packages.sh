@@ -4,5 +4,6 @@ set -e
 
 echo "[*] Running script to install desktop environment packages"
 
-sudo apt-get install -y --no-upgrade \
-    dunst
+sudo apt install -y --no-upgrade \
+    dunst \
+    i3
