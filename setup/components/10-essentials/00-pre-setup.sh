@@ -8,4 +8,7 @@ echo "[*] Updating apt cache"
 sudo apt-get update
 
 echo "[*] Updating all packages"
-sudo apt-get upgrade -y
+sudo apt-get upgrade -y --no-upgrade \
+    curl \
+    git \
+    stow
