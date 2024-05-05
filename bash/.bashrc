@@ -121,14 +121,29 @@ bind -x '"\C-f":"bash ~/.local/bin/tmux-sessionizer"'
 alias "cdr"='cd $(git rev-parse --show-toplevel)'
 
 export DENO_INSTALL="/home/vitor/.deno"
-export PATH="$DENO_INSTALL/bin:$PATH"
+export PATH="${DENO_INSTALL}/bin:$PATH"
 
 export PATH="/usr/local/go/bin:$PATH"
-export PATH="$HOME"/.local/bin:$PATH
+export PATH="${HOME}"/.local/bin:$PATH
 
-export DOTFILES_DIR="$HOME/.dotfiles"
-export ENGI_DIR="$DOTFILES_DIR/setup"
+export SECOND_BRAIN="${HOME}/second_brain"
+export DOTFILES_DIR="${HOME}/.dotfiles"
+export ENGI_DIR="${DOTFILES_DIR}/setup"
+
+alias l="exa"
+alias ls="exa"
+alias ll="exa --long --all --icons --git --group-directories-first"
+alias lf="exa --long --all --icons --git --only-files"
+alias ld="exa --long --all --icons --git --only-dirs" 
+
+alias t="exa --tree --icons"
+alias tt="exa --tree --all --icons"
+alias tf="exa --tree --all --icons --only-files"
+alias td="exa --tree --all --icons --only-dirs"
 
 alias ".."="cd .."
+alias sb="cd $SECOND_BRAIN && nvim"
 
 alias bat="batcat"
+
+#eval "$(starship init bash)"
