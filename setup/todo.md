@@ -3,6 +3,6 @@
 - [] Import SSH keys and config
 - [] Import GPG keys
 - [] Import shared files (wallpapers)
-- [] Stow dotfiles
 - [] Pull work dotfiles and setup scripts
-- [] Set up lazygit
+- [] Set up xrandr stuff
+- [] Try to move all colors/fonts/etc to ~/.Xresources
