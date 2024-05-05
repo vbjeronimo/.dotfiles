@@ -4,18 +4,29 @@ set -e
 
 source "${ENGI_DIR}/options.env"
 
+install_nerd_font() {
+    local font=$1
+
+    mkdir "${FONTS_DIR}/${font}"
+    curl -L "https://github.com/ryanoasis/nerd-fonts/releases/latest/download/${font}.tar.xz" \
+        | tar xJ -C "${HOME}/.local/share/fonts/${font}"
+}
+
 echo "[*] Running fonts setup script"
 
-mkdir -p "${HOME}/.local/share/fonts"
+FONTS_DIR="${HOME}/.local/share/fonts"
+mkdir -p "$FONTS_DIR"
+
 for font in "${NERD_FONTS[@]}"; do
-    echo "[*] Checking if font ${font} is already installed..."
+    echo "[*] Checking if font $font is already installed..."
 
-    if ! ls "${HOME}/.local/share/fonts" | grep -qw "$font"; then
-        echo "[*] Installing ${font} Nerd Font"
-
-        mkdir "${HOME}/.local/share/fonts/${font}"
-        curl -L "https://github.com/ryanoasis/nerd-fonts/releases/latest/download/${font}.tar.xz" \
-            | tar xJ -C "${HOME}/.local/share/fonts/${font}"
+    if [[ -z "$(find "$FONTS_DIR" -name "$font")" ]]; then
+        echo "[*] Installing $font Nerd Font"
+        install_nerd_font "$font"
+    elif [[ -z "$(find ${HOME}/.local/share/fonts/${font} -mindepth 1)" ]]; then
+        echo "[*] Directory for $font exists but it's empty. Deleting dir and installing font"
+        rm -r "${FONTS_DIR}/${font}"
+        install_nerd_font "$font"
     else
         echo "[*] Font ${font} Nerd Font is already installed. Skipping..."
     fi
