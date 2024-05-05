@@ -8,5 +8,6 @@ sudo apt install -y --no-upgrade \
     alacritty \
     dunst \
     i3 \
+    feh \
     papirus-icon-theme \
     rofi
