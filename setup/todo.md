@@ -1,5 +1,6 @@
 # TODO
 
+- [] Add bash aliases from the old dotfiles
 - [] Import SSH keys and config
 - [] Import GPG keys
 - [] Import shared files (wallpapers)
