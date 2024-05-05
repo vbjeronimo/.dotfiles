@@ -126,7 +126,8 @@ export PATH="$DENO_INSTALL/bin:$PATH"
 export PATH="/usr/local/go/bin:$PATH"
 export PATH="$HOME"/.local/bin:$PATH
 
-export ENGI_DIR="$HOME/wip-dotfiles/setup"
+export DOTFILES_DIR="$HOME/.dotfiles"
+export ENGI_DIR="$DOTFILES_DIR/setup"
 
 alias ".."="cd .."
 
