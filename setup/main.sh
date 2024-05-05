@@ -24,7 +24,11 @@ case "$command" in
 
                 if [[ "${#scripts[@]}" -eq 0 ]]; then
                     echo "Running all scripts for $component"
-                    run-parts --exit-on-error --regex '.*' "${BASE_DIR}"/*"${component}"
+                    if find "$BASE_DIR" -name "$component" -type f; then
+                        bash -c "${BASE_DIR}"/*"${component}.sh"
+                    else
+                        run-parts --exit-on-error --regex '.*' "${BASE_DIR}"/*"${component}"
+                    fi
                 else
                     echo "Running $component:$target"
                     for script in "${scripts[@]}"; do
@@ -48,7 +52,11 @@ case "$command" in
 
         if [[ "${#scripts[@]}" -eq 0 ]]; then
             echo "Enabling all scripts in $component"
-            chmod u+x "${BASE_DIR}"/*"${component}"/*.sh
+            if find "$BASE_DIR" -name "$component" -type f; then
+                chmod u+x "${BASE_DIR}"/*"${component}.sh"
+            else
+                chmod u+x "${BASE_DIR}"/*"${component}"/*.sh
+            fi
         fi
 
         for script in "${scripts[@]}"; do
@@ -62,7 +70,11 @@ case "$command" in
 
         if [[ "${#scripts[@]}" -eq 0 ]]; then
             echo "Disabling all scripts in $component"
-            chmod a-x "${BASE_DIR}"/*"${component}"/*.sh
+            if find "$BASE_DIR" -name "$component" -type f; then
+                chmod a-x "${BASE_DIR}"/*"${component}.sh"
+            else
+                chmod a-x "${BASE_DIR}"/*"${component}"/*.sh
+            fi
         fi
 
         for script in "${scripts[@]}"; do
