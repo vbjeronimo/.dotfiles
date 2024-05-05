@@ -37,3 +37,11 @@ echo "[*] Installing Telescope dependencies"
 sudo apt-get install -y --no-upgrade \
     fd-find \
     ripgrep
+
+if ! command fd &> /dev/null; then
+    fdfind_path="$(which fdfind)"
+    fd_path="/usr/local/bin/fd"
+
+    echo "[*] Creating symlink from $fdfind_path to $fd_path"
+    sudo ln -s "$fdfind_path" "$fd_path"
+fi
