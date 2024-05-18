@@ -2,6 +2,7 @@
 
 set -e
 
+ENGI_DIR=${ENGI_DIR:-$(dirname $0)}
 BASE_DIR="${ENGI_DIR}/components"
 
 if [[ "$#" -eq 0 ]]; then
@@ -41,9 +42,9 @@ case "$command" in
         ;;
     list)
         if [[ "$#" -eq 0 ]]; then
-            find "${BASE_DIR}" -type d -exec run-parts --test --regex '.*' {} \; | tree --fromfile
+            find "${BASE_DIR}" -type d -exec run-parts --test --regex '.*' {} \; | tree -a --fromfile
         else
-            find "${BASE_DIR}"/*"$1" -type d -exec run-parts --test --regex '.*' {} \; | tree --fromfile
+            find "${BASE_DIR}"/*"$1" -type d -exec run-parts --test --regex '.*' {} \; | tree -a --fromfile
         fi
         ;;
     enable)
