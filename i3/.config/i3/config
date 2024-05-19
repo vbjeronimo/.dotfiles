@@ -1,7 +1,6 @@
-# exec --no-startup-id autorandr --change
+exec --no-startup-id autorandr --change
 # exec --no-startup-id nm-applet
-# exec --no-startup-id feh --bg-fill ~/pictures/wallpapers/active.png
-# exec --no-startup-id setxkbmap -variant colemak
+exec --no-startup-id feh --bg-fill ~/pictures/wallpapers/active
 
 # Start XDG autostart .desktop files using dex. See also
 # https://wiki.archlinux.org/index.php/XDG_Autostart
