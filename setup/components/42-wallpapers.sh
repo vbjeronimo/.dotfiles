@@ -23,6 +23,9 @@ if [[ ! -e "$ACTIVE_WALLPAPER" ]]; then
     current_resolution="$(xrandr | grep primary | awk '{print $4}' | cut -d '+' -f 1)"
 
     wallpaper_paths=($(find "$WALLPAPERS_DIR" -name "*$current_resolution*"))
+    if [[ "${#wallpaper_paths[@]}" -eq 0 ]]; then
+        wallpaper_paths=($(find "$WALLPAPERS_DIR"))
+    fi
     random_index="$((RANDOM % ${#wallpaper_paths[@]}))"
     chosen_wallpaper="${wallpaper_paths[$random_index]}"
 
