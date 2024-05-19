@@ -8,6 +8,7 @@ sudo apt install -y --no-upgrade \
     alacritty \
     arandr \
     autorandr \
+    brightnessctl \
     dunst \
     feh \
     i3 \

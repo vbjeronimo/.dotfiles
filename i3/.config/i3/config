@@ -20,6 +20,9 @@ bindsym $mod+m  exec --no-startup-id playerctl play-pause   --player spotify
 bindsym $mod+n  exec --no-startup-id playerctl previous     --player spotify
 bindsym $mod+o  exec --no-startup-id playerctl next         --player spotify
 
+bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +5%
+bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 5%-
+
 floating_modifier $mod
 tiling_drag modifier titlebar
 
