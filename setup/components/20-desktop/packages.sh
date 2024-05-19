@@ -9,6 +9,7 @@ sudo apt install -y --no-upgrade \
     arandr \
     autorandr \
     brightnessctl \
+    budgie-network-manager-applet \
     dunst \
     feh \
     i3 \
