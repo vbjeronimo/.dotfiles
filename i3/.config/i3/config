@@ -133,7 +133,7 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-font pango:FiraMono Nerd Font 12
+default_border pixel
 
 set_from_resource $fg i3wm.foreground #ffffff
 set_from_resource $bg i3wm.background #000000
