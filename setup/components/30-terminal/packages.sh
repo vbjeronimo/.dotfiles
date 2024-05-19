@@ -8,3 +8,8 @@ sudo apt-get install -y --no-upgrade \
     bat \
     exa \
     fzf
+
+# Install packages for ranger
+sudo apt-get install -y --no-upgrade \
+    ranger \
+    w3m
