@@ -13,7 +13,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup("hydrogen.plugins", {
-  defaults = {
-    lazy = true,
+  change_detection = {
+    notify = false,
   },
 })
