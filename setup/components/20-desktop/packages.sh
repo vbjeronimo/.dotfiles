@@ -7,8 +7,9 @@ echo "[*] Running script to install desktop environment packages"
 sudo apt install -y --no-upgrade \
     alacritty \
     arandr \
+    autorandr \
     dunst \
-    i3 \
     feh \
+    i3 \
     papirus-icon-theme \
     rofi
