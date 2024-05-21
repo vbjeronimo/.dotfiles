@@ -12,6 +12,7 @@ sudo apt install -y --no-upgrade \
     budgie-network-manager-applet \
     dunst \
     feh \
+    flameshot \
     i3 \
     papirus-icon-theme \
     rofi
