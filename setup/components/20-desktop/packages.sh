@@ -15,4 +15,5 @@ sudo apt install -y --no-upgrade \
     flameshot \
     i3 \
     papirus-icon-theme \
+    pavucontrol \
     rofi
