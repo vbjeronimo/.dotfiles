@@ -16,4 +16,5 @@ sudo apt install -y --no-upgrade \
     i3 \
     papirus-icon-theme \
     pavucontrol \
+    playerctl \
     rofi
