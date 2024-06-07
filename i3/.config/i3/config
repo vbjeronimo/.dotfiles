@@ -28,11 +28,12 @@ bindsym $mod+t exec alacritty
 
 # kill focused window
 # bindsym $mod+BackSpace kill
-bindsym $mod+q kill
+bindsym $mod+a kill
 
 # start dmenu (a program launcher)
 # bindsym $mod+space exec "rofi -modi drun,run -show drun -show-icons"
 bindsym $mod+d exec "rofi -modi drun,run -show drun -show-icons"
+bindsym $mod+s exec "rofi -modi drun,run -show drun -show-icons"
 
 # change focus
 bindsym $mod+h focus left
@@ -63,8 +64,8 @@ bindsym $mod+f fullscreen toggle
 # change focus between tiling / floating windows
 bindsym $mod+Shift+t focus mode_toggle
 
-bindsym $mod+s          scratchpad show
-bindsym $mod+Shift+s    move scratchpad
+# bindsym $mod+s          scratchpad show
+# bindsym $mod+Shift+s    move scratchpad
 
 # focus the parent container
 #bindsym $mod+a focus parent
