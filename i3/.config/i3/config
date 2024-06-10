@@ -29,6 +29,7 @@ bindsym $mod+t exec alacritty
 # kill focused window
 # bindsym $mod+BackSpace kill
 bindsym $mod+a kill
+bindsym $mod+q kill
 
 # start dmenu (a program launcher)
 # bindsym $mod+space exec "rofi -modi drun,run -show drun -show-icons"
