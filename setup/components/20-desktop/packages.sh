@@ -18,3 +18,8 @@ sudo apt install -y --no-upgrade \
     pavucontrol \
     playerctl \
     rofi
+
+# Open VPN stuff
+sudo apt install -y --no-upgrade \
+    network-manager-openvpn \
+    openvpn
