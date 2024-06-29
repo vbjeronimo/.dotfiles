@@ -131,4 +131,7 @@ if [[ -d "$HOME/.config/bash" ]]; then
     done
 fi
 
+export MANPAGER='nvim +Man!'
+export MANWIDTH=999
+
 #eval "$(starship init bash)"
