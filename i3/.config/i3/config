@@ -136,6 +136,8 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
+gaps inner 5
+
 default_border pixel
 hide_edge_borders smart
 
@@ -152,7 +154,7 @@ set_from_resource $cyan i3wm.color6
 set_from_resource $white i3wm.color7
 
 # class                 border  backgr. text indicator child_border
-client.focused          $bg     $bg     $fg  $green    $bg
+client.focused          $bg     #bbbbbb     $fg  $green    $bg
 client.focused_inactive $bg     $bg     $fg  $bg       $bg
 client.unfocused        $bg     $bg     $fg  $bg       $bg
 client.urgent           $bg     $bg     $fg  $bg       $bg
