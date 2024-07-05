@@ -1,6 +1,7 @@
-exec --no-startup-id autorandr --change
+# exec --no-startup-id autorandr --change
 exec --no-startup-id nm-applet
 exec --no-startup-id feh --bg-fill ~/pictures/wallpapers/active
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
@@ -160,24 +161,24 @@ client.placeholder      $bg     $bg     $fg  $bg       $bg
 client.background       $bg
 
 # i3status
-bar {
-    status_command i3status --config ~/.config/i3/i3status.conf
-
-    font pango:FiraMono Nerd Font 12
-    padding 2px
-    workspace_min_width 30
-    separator_symbol " | "
-
-    colors {
-        background $bg
-        statusline $fg
-        separator $fg
-
-        # focused_workspace #02ea2a #100eac #11100b
-        # focused_workspace $cyan $cyan $black
-        # active_workspace   $blue       $blue     $black
-        # inactive_workspace $black      $black    $white
-        # urgent_workspace   $red        $red      $white
-        # binding_mode       $magenta    $magenta  $bg
-    }
-}
+# bar {
+#     status_command i3status --config ~/.config/i3/i3status.conf
+#
+#     font pango:FiraMono Nerd Font 12
+#     padding 2px
+#     workspace_min_width 30
+#     separator_symbol " | "
+#
+#     colors {
+#         background $bg
+#         statusline $fg
+#         separator $fg
+#
+#         # focused_workspace #02ea2a #100eac #11100b
+#         # focused_workspace $cyan $cyan $black
+#         # active_workspace   $blue       $blue     $black
+#         # inactive_workspace $black      $black    $white
+#         # urgent_workspace   $red        $red      $white
+#         # binding_mode       $magenta    $magenta  $bg
+#     }
+# }

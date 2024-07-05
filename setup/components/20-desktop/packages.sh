@@ -17,6 +17,7 @@ sudo apt install -y --no-upgrade \
     papirus-icon-theme \
     pavucontrol \
     playerctl \
+    polybar \
     rofi
 
 # Open VPN stuff
