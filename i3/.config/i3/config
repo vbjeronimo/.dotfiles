@@ -152,33 +152,10 @@ set_from_resource $cyan i3wm.color6
 set_from_resource $white i3wm.color7
 
 # class                 border  backgr. text indicator child_border
-client.focused          $bg     #bbbbbb     $fg  $green    $bg
+client.focused          $bg     $bg     $fg  $bg       $bg
 client.focused_inactive $bg     $bg     $fg  $bg       $bg
 client.unfocused        $bg     $bg     $fg  $bg       $bg
 client.urgent           $bg     $bg     $fg  $bg       $bg
 client.placeholder      $bg     $bg     $fg  $bg       $bg
 
 client.background       $bg
-
-# i3status
-# bar {
-#     status_command i3status --config ~/.config/i3/i3status.conf
-#
-#     font pango:FiraMono Nerd Font 12
-#     padding 2px
-#     workspace_min_width 30
-#     separator_symbol " | "
-#
-#     colors {
-#         background $bg
-#         statusline $fg
-#         separator $fg
-#
-#         # focused_workspace #02ea2a #100eac #11100b
-#         # focused_workspace $cyan $cyan $black
-#         # active_workspace   $blue       $blue     $black
-#         # inactive_workspace $black      $black    $white
-#         # urgent_workspace   $red        $red      $white
-#         # binding_mode       $magenta    $magenta  $bg
-#     }
-# }

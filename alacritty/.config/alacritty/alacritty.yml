@@ -7,3 +7,29 @@ font:
   size: 16.0
   normal:
     family: "FiraMono Nerd Font"
+
+colors:
+
+  primary:
+    background: '#0f111a'
+    foreground: '#a6accd'
+
+  normal:
+    black:   '#000000'
+    red:     '#f07178'
+    green:   '#c3e88d'
+    yellow:  '#ffcb6b'
+    blue:    '#82aaff'
+    magenta: '#c792ea'
+    cyan:    '#89ddff'
+    white:   '#eeffff'
+
+  bright:
+    black:   '#000000'
+    red:     '#dc6068'
+    green:   '#abcf76'
+    yellow:  '#e6b455'
+    blue:    '#6e98eb'
+    magenta: '#b480d6'
+    cyan:    '#71c6e7'
+    white:   '#e2795b'
