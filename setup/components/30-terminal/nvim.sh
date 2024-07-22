@@ -38,7 +38,7 @@ sudo apt-get install -y --no-upgrade \
     fd-find \
     ripgrep
 
-if ! command fd &> /dev/null; then
+if ! command -v fd &> /dev/null; then
     fdfind_path="$(which fdfind)"
     fd_path="/usr/local/bin/fd"
 
