@@ -10,6 +10,11 @@ echo "[*] Starting script to import wallpapers"
 
 sudo apt install -y --no-upgrade feh
 
+if [[ ! -d "$WALLPAPERS_SOURCE" ]]; then
+    echo "[WARN] Could not find the wallpapers source dir '$WALLPAPERS_SOURCE'. Skipping wallpaper setup..."
+    exit 0
+fi
+
 if [[ ! -d "$WALLPAPERS_DIR" ]]; then
     echo "Copying wallpapers dir from $WALLPAPERS_SOURCE to $WALLPAPERS_DIR"
     mkdir -p "$WALLPAPERS_DIR"
