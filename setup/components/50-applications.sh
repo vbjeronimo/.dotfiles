@@ -41,3 +41,11 @@ if ! command -v spotify &> /dev/null; then
     # The spotify package is currently broken and installs files owned by uid 1000, fix it
     dpkg -L spotify-client | sudo xargs chown --no-dereference root:root
 fi
+
+if ! command -v obsidian &> /dev/null; then
+    echo "[*] Installing Obsidian"
+    temp_deb="$(mktemp --suffix '.deb')"
+    wget -O "$temp_deb" https://github.com/obsidianmd/obsidian-releases/releases/download/v1.6.7/obsidian_1.6.7_amd64.deb
+    sudo apt install "$temp_deb"
+    rm "$temp_deb"
+fi
