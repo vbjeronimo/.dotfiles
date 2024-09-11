@@ -30,6 +30,8 @@ bindsym $mod+t exec alacritty
 bindsym $mod+a kill
 bindsym $mod+q kill
 
+bindsym $mod+p exec flameshot gui
+
 # start dmenu (a program launcher)
 bindsym $mod+space exec "rofi -modi drun,run -show drun -show-icons"
 bindsym $mod+d exec "rofi -modi drun,run -show drun -show-icons"
