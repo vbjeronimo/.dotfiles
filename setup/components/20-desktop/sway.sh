@@ -13,4 +13,5 @@ pkg_install \
     swaybg \
     swayidle \
     swaylock \
-    sway
+    sway \
+    wmenu
