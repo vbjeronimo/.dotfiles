@@ -1,6 +1,5 @@
 # TODO
 
-- [] Import SSH keys and config
-- [] Pull work dotfiles and setup scripts
-- [] Try to move all colors/fonts/etc to ~/.Xresources
-- [] Take a look at automating the Syncthing Tray setup
+- [] Find a better app launcher
+- [] Read 'man 5 sway'
+- [] Look into sway's clamshell mode: https://github.com/swaywm/sway/wiki#clamshell-mode
