@@ -5,8 +5,7 @@ set -e
 source "${ENGI_DIR}/options.env"
 
 echo "[*] Setting up environment for Go development"
-
-if ! command -v go; then
+if ! command -vq go; then
     echo "[*] Downloading and installing Go"
 
     TEMP_TAR="$(mktemp)"

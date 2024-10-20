@@ -3,12 +3,12 @@
 set -eu
 
 source "${ENGI_DIR}/options.env"
+source "${ENGI_DIR}/lib/pkg.sh"
 
-echo "[*] Running Neovim setup script"
-
-if ! command -v nvim &> /dev/null; then
+echo "[*] Installing Neovim from source (verison $NEOVIM_VERSION)"
+if ! command -vq nvim; then
     echo "[*] Installing build dependencies"
-    sudo apt-get install -y --no-upgrade \
+    pkg_install \
         build-essential \
         cmake \
         curl \
@@ -17,11 +17,11 @@ if ! command -v nvim &> /dev/null; then
         unzip
 
     if [[ ! -d /opt/neovim ]]; then
-        echo "[*] Cloning Neovim into /opt/neovim (version $NEOVIM_VERSION)"
+        echo "[*] Cloning neovim repo into /opt/neovim"
         sudo git clone https://github.com/neovim/neovim /opt/neovim
     fi
 
-    echo "[*] Building Neovim from source"
+    echo "[*] Building Neovim"
     (
         sudo chown "$USER:$USER" -R /opt/neovim
         cd /opt/neovim
@@ -34,14 +34,6 @@ else
 fi
 
 echo "[*] Installing Telescope dependencies"
-sudo apt-get install -y --no-upgrade \
-    fd-find \
+pkg_install \
+    fd \
     ripgrep
-
-if ! command -v fd &> /dev/null; then
-    fdfind_path="$(which fdfind)"
-    fd_path="/usr/local/bin/fd"
-
-    echo "[*] Creating symlink from $fdfind_path to $fd_path"
-    sudo ln -s "$fdfind_path" "$fd_path"
-fi

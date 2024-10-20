@@ -1,12 +1,12 @@
 #!/bin/bash
 
-set -e
+set -eu
 
-echo "[*] Starting script to install and setup Docker"
+source "${ENGI_DIR}/options.env"
 
-if ! command -v docker &> /dev/null; then
+echo "[*] Installing Docker"
+if ! command -vq docker; then
     echo "[*] Adding Docker repository to apt sources"
-
     # Add Docker's official GPG key:
     sudo apt-get update
     sudo apt-get install ca-certificates curl
@@ -22,7 +22,7 @@ if ! command -v docker &> /dev/null; then
     sudo apt-get update
 
     echo "[*] Installing Docker packages"
-    sudo apt-get install -y --no-upgrade \
+    pkg_install \
         docker-ce \
         docker-ce-cli \
         containerd.io \

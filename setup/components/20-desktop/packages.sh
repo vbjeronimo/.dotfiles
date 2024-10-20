@@ -1,26 +1,20 @@
 #!/bin/bash
 
-set -e
+set -eu
 
-echo "[*] Running script to install desktop environment packages"
+source "${ENGI_DIR}/lib/pkg.sh"
 
-sudo apt install -y --no-upgrade \
-    alacritty \
-    arandr \
-    autorandr \
-    brightnessctl \
-    budgie-network-manager-applet \
-    dunst \
-    feh \
-    flameshot \
-    i3 \
-    papirus-icon-theme \
+echo "[*] Installing audio-related packages"
+pkg_install \
     pavucontrol \
-    playerctl \
-    polybar \
-    rofi
+    playerctl
 
-# Open VPN stuff
-sudo apt install -y --no-upgrade \
-    network-manager-openvpn \
+echo "[*] Installing VPN-related packages"
+pkg_install \
+    networkmanager-openvpn \
     openvpn
+
+echo "[*] Installing misc packages"
+pkg_install \
+    brightnessctl \
+    papirus-icon-theme

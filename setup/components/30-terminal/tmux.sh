@@ -3,19 +3,18 @@
 set -eu
 
 source "${ENGI_DIR}/options.env"
+source "${ENGI_DIR}/lib/pkg.sh"
 
-echo "[*] Running tmux install script"
+echo "[*] Installing tmux from source (version ${TMUX_VERSION})"
+if ! command -vq tmux; then
 
-if ! command -v tmux &> /dev/null; then
-    echo "[*] Installing tmux from source (version ${TMUX_VERSION})"
-
-    echo "[*] Installing run dependencies"
-    sudo apt-get install -y --no-upgrade \
+    echo "[*] Installing runtime dependencies"
+    pkg_install \
         libevent \
-        ncurses || true
+        ncurses
 
     echo "[*] Installing build dependencies"
-    sudo apt-get install -y --no-upgrade \
+    pkg_install \
         bison \
         build-essential \
         libevent-dev \

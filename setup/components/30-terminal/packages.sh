@@ -1,15 +1,20 @@
 #!/bin/bash
 
-set -e
+set -eu
 
-echo "[*] Running script to install terminal packages"
+source "${ENGI_DIR}/lib/pkg.sh"
 
-sudo apt-get install -y --no-upgrade \
+echo "[*] Installing terminal essentials"
+pkg_install \
     bat \
     exa \
     fzf
 
-# Install packages for ranger
-sudo apt-get install -y --no-upgrade \
+echo "[*] Installing Lazygit"
+pkg_install \
+    lazygit
+
+echo "[*] Installing ranger"
+pkg_install \
     ranger \
     w3m

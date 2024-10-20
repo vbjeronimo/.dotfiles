@@ -2,7 +2,8 @@
 
 set -e
 
-echo "[*] Setting up environment for bash development"
+source "${ENGI_DIR}/lib/pkg.sh"
 
-sudo apt install -y --no-upgrade \
+echo "[*] Setting up environment for bash development"
+pkg_install \
     shellcheck

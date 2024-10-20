@@ -1,8 +1,11 @@
 #!/bin/bash
 
-set -e
+set -eu
 
 source "${ENGI_DIR}/options.env"
+
+FONTS_DIR="${HOME}/.local/share/fonts"
+mkdir -p "$FONTS_DIR"
 
 install_nerd_font() {
     local font=$1
@@ -12,11 +15,7 @@ install_nerd_font() {
         | tar xJ -C "${HOME}/.local/share/fonts/${font}"
 }
 
-echo "[*] Running fonts setup script"
-
-FONTS_DIR="${HOME}/.local/share/fonts"
-mkdir -p "$FONTS_DIR"
-
+echo "[*] Installing Nerd Fonts"
 for font in "${NERD_FONTS[@]}"; do
     echo "[*] Checking if font $font is already installed..."
 

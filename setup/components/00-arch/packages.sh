@@ -5,7 +5,7 @@ set -eu
 source "${ENGI_DIR}/lib/pkg.sh"
 
 echo "[*] Updating and upgrading the system"
-sudo pacman -Syu
+sudo pacman -Syu --noconfirm
 
 echo "[*] Installing man pages"
 pkg_install
