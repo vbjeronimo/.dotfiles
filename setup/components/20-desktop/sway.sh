@@ -4,8 +4,9 @@ set -eu
 
 source "${ENGI_DIR}/lib/pkg.sh"
 
-echo "[*] Making sure Wayland is installed"
+echo "[*] Installing Wayland"
 pkg_install \
+    wev \
     wayland
 
 echo "[*] Installing Sway"
