@@ -46,4 +46,4 @@ if [[ ! -e ~/.tmux/plugins/tpm ]]; then
     git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 else
     echo "[*] TPM is already installed. Nothing to do"
-fi
+f
