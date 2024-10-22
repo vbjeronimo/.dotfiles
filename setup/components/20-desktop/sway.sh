@@ -16,3 +16,7 @@ pkg_install \
     swaylock \
     sway \
     wmenu
+
+echo "[*] Installing Waybar"
+pkg_install \
+    waybar
