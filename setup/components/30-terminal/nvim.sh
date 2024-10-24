@@ -33,6 +33,11 @@ else
     echo "[*] Neovim already installed. Nothing to do"
 fi
 
+echo "[*] Installing lazy dependencies"
+pkg_install \
+    lua \
+    luarocks
+
 echo "[*] Installing Telescope dependencies"
 pkg_install \
     fd \
