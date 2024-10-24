@@ -10,7 +10,7 @@ echo "[*] Installing the fish shell"
 pkg_install \
     fish
 
-if ! echo "$SHELL" | grep -q "fish"; then
+if [[ "$(basename "$SHELL")" != "fish" ]]; then
     echo "[*] Setting up fish as the default shell"
     sudo chsh -s $(which fish) $non_root_user
 else
