@@ -2,15 +2,13 @@
 
 set -eu
 
-source "${ENGI_DIR}/lib/pkg.sh"
-
 echo "[*] Installing Wayland"
-pkg_install \
+sudo pacman -S --needed --noconfirm \
     wev \
     wayland
 
 echo "[*] Installing Sway"
-pkg_install \
+sudo pacman -S --needed --noconfirm \
     swaybg \
     swayidle \
     swaylock \
@@ -18,5 +16,12 @@ pkg_install \
     wmenu
 
 echo "[*] Installing Waybar"
-pkg_install \
+sudo pacman -S --needed --noconfirm \
     waybar
+
+lib_dir="$(cd $(dirname "$0") && cd ../../lib && pwd)"
+
+source "${lib_dir}/dotfiles.sh"
+lib_dotfiles_stow_config \
+    "sway" \
+    "waybar"
