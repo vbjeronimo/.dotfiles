@@ -2,19 +2,17 @@
 
 set -eu
 
-source "${ENGI_DIR}/lib/pkg.sh"
-
 echo "[*] Updating and upgrading the system"
 sudo pacman -Syu --noconfirm
 
 echo "[*] Installing man pages"
-pkg_install
+sudo pacman -S --needed --noconfirm \
     man-db \
     man-pages \
     texinfo
 
 echo "[*] Installing system essentials"
-pkg_install
+sudo pacman -S --needed --noconfirm \
     base-devel \
     curl \
     git \

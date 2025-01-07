@@ -2,7 +2,7 @@
 
 set -e
 
-source "${ENGI_DIR}/options.env"
+KEYBOARD_LAYOUT="colemak"
 
 echo "[*] Setting defualt keyboard layout for the console ($KEYBOARD_LAYOUT)"
 if grep -q "^KEYMAP" < /etc/vconsole.conf; then

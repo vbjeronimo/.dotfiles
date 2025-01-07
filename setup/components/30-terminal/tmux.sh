@@ -2,19 +2,17 @@
 
 set -eu
 
-source "${ENGI_DIR}/options.env"
-source "${ENGI_DIR}/lib/pkg.sh"
+TMUX_VERSION="3.4"
 
 echo "[*] Installing tmux from source (version ${TMUX_VERSION})"
 if ! command -vq tmux; then
-
     echo "[*] Installing runtime dependencies"
-    pkg_install \
+    sudo pacman -S --needed --noconfirm \
         libevent \
         ncurses
 
     echo "[*] Installing build dependencies"
-    pkg_install \
+    sudo pacman -S --needed --noconfirm \
         bison \
         build-essential \
         libevent-dev \
@@ -46,4 +44,10 @@ if [[ ! -e ~/.tmux/plugins/tpm ]]; then
     git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 else
     echo "[*] TPM is already installed. Nothing to do"
-f
+fi
+
+lib_dir="$(cd $(dirname "$0") && cd ../../lib && pwd)"
+
+source "${lib_dir}/dotfiles.sh"
+lib_dotfiles_stow_config \
+    "tmux"

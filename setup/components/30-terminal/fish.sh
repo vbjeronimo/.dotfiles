@@ -2,17 +2,21 @@
 
 set -eu
 
-source "${ENGI_DIR}/lib/pkg.sh"
+SUDO_USER=${SUDO_USER:-$USER}
 
-non_root_user=$USER
-
-echo "[*] Installing the fish shell"
-pkg_install \
+echo "[*] Installing fish shell"
+sudo pacman -S --needed --noconfirm \
     fish
 
 if [[ "$(basename "$SHELL")" != "fish" ]]; then
-    echo "[*] Setting up fish as the default shell"
-    sudo chsh -s $(which fish) $non_root_user
+    echo "[*] Setting up fish as the default shell for user '$SUDO_USER'"
+    sudo chsh -s "$(which fish)" "$SUDO_USER"
 else
-    echo "[*] Fish is already set as the default shell. Skipping shell setup"
+    echo "[*] Fish is already set as the default shell for user '$SUDO_USER'. Skipping shell setup"
 fi
+
+lib_dir="$(cd $(dirname "$0") && cd ../../lib && pwd)"
+
+source "${lib_dir}/dotfiles.sh"
+lib_dotfiles_stow_config \
+    "fish"

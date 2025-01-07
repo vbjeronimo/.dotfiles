@@ -2,8 +2,6 @@
 
 set -eu
 
-source "${ENGI_DIR}/options.env"
-
 echo "[*] Installing Docker"
 if ! command -vq docker; then
     echo "[*] Adding Docker repository to apt sources"

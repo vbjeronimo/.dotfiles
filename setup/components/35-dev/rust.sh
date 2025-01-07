@@ -1,11 +1,9 @@
 #!/bin/bash
 
-set -eu
-
-source "${ENGI_DIR}/lib/pkg.sh"
+set -e
 
 echo "[*] Setting up environment for Rust development"
-pkg_install \
+sudo pacman -S --needed --noconfirm \
     rustup
 
 echo "[*] Setting the default version of cargo"

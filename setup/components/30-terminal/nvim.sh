@@ -2,13 +2,12 @@
 
 set -eu
 
-source "${ENGI_DIR}/options.env"
-source "${ENGI_DIR}/lib/pkg.sh"
+NEOVIM_VERSION="v0.9.5"
 
-echo "[*] Installing Neovim from source (verison $NEOVIM_VERSION)"
+echo "[*] Installing Neovim from source (version $NEOVIM_VERSION)"
 if ! command -vq nvim; then
     echo "[*] Installing build dependencies"
-    pkg_install \
+    sudo pacman -S --needed --noconfirm \
         build-essential \
         cmake \
         curl \
@@ -34,11 +33,17 @@ else
 fi
 
 echo "[*] Installing lazy dependencies"
-pkg_install \
+sudo pacman -S --needed --noconfirm \
     lua \
     luarocks
 
 echo "[*] Installing Telescope dependencies"
-pkg_install \
+sudo pacman -S --needed --noconfirm \
     fd \
     ripgrep
+
+lib_dir="$(cd $(dirname "$0") && cd ../../lib && pwd)"
+
+source "${lib_dir}/dotfiles.sh"
+lib_dotfiles_stow_config \
+    "nvim"

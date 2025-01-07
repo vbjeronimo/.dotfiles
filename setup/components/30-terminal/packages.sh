@@ -1,20 +1,13 @@
 #!/bin/bash
 
-set -eu
-
-source "${ENGI_DIR}/lib/pkg.sh"
+set -e
 
 echo "[*] Installing terminal essentials"
-pkg_install \
+sudo pacman -S --needed --noconfirm \
     bat \
     exa \
     fzf
 
 echo "[*] Installing Lazygit"
-pkg_install \
+sudo pacman -S --needed --noconfirm \
     lazygit
-
-echo "[*] Installing ranger"
-pkg_install \
-    ranger \
-    w3m

@@ -2,10 +2,8 @@
 
 set -eu
 
-source "${ENGI_DIR}/lib/pkg.sh"
-
 echo "[*] Installing greetd"
-pkg_install \
+sudo pacman -S --needed --noconfirm
     greetd-tuigreet \
     greetd
 

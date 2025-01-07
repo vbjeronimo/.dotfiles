@@ -2,7 +2,9 @@
 
 set -eu
 
-source "${ENGI_DIR}/options.env"
+NERD_FONTS=(
+    "FiraMono"
+)
 
 FONTS_DIR="${HOME}/.local/share/fonts"
 mkdir -p "$FONTS_DIR"

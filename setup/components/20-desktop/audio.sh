@@ -3,24 +3,6 @@
 set -eu
 
 echo "[*] Installing audio-related packages"
-
-sudo apt install -y --no-upgrade \
-    alacritty \
-    arandr \
-    autorandr \
-    brightnessctl \
-    budgie-network-manager-applet \
-    dunst \
-    feh \
-    flameshot \
-    i3 \
-    papirus-icon-theme \
+sudo pacman -S --needed --noconfirm \
     pavucontrol \
-    playerctl \
-    polybar \
-    rofi
-
-# Open VPN stuff
-sudo apt install -y --no-upgrade \
-    network-manager-openvpn \
-    openvpn
+    playerctl

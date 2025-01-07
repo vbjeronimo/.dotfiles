@@ -1,8 +1,8 @@
 #!/bin/bash
 
-set -eu
+set -e
 
-source "${ENGI_DIR}/options.env"
+GO_VERSION="1.22.3"
 
 echo "[*] Setting up environment for Go development"
 if ! command -vq go; then

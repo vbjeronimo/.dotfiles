@@ -2,10 +2,8 @@
 
 set -eu
 
-source "${ENGI_DIR}/lib/pkg.sh"
-
 echo "[*] Installing starship shell prompt"
-pkg_install \
+sudo pacman -S --needed --noconfirm \
     starship
 
 fish_drop_in_config="$HOME/.config/fish/conf.d/starship.fish"

@@ -2,13 +2,12 @@
 
 set -e
 
-source "${ENGI_DIR}/options.env"
+WALLPAPERS_SOURCE="/mnt/pictures/wallpapers"
+WALLPAPERS_DIR="${HOME}/pictures/wallpapers"
 
 ACTIVE_WALLPAPER="${WALLPAPERS_DIR}/active"
 
 echo "[*] Starting script to import wallpapers"
-
-sudo apt install -y --no-upgrade feh
 
 if [[ ! -d "$WALLPAPERS_SOURCE" ]]; then
     echo "[WARN] Could not find the wallpapers source dir '$WALLPAPERS_SOURCE'. Skipping wallpaper setup..."
