@@ -5,15 +5,14 @@ set -eu
 NEOVIM_VERSION="v0.9.5"
 
 echo "[*] Installing Neovim from source (version $NEOVIM_VERSION)"
-if ! command -vq nvim; then
+if ! command -v nvim > /dev/null; then
     echo "[*] Installing build dependencies"
     sudo pacman -S --needed --noconfirm \
-        build-essential \
-        cmake \
-        curl \
-        gettext \
-        ninja-build \
-        unzip
+    	base-devel \
+	cmake \
+	curl \
+	ninja \
+	unzip
 
     if [[ ! -d /opt/neovim ]]; then
         echo "[*] Cloning neovim repo into /opt/neovim"
@@ -26,7 +25,7 @@ if ! command -vq nvim; then
         cd /opt/neovim
         git checkout "$NEOVIM_VERSION"
         make CMAKE_BUILD_TYPE=RelWithDebInfo
-        cd build && cpack -G DEB && sudo dpkg -i nvim-linux64.deb
+	sudo make install
     )
 else
     echo "[*] Neovim already installed. Nothing to do"
