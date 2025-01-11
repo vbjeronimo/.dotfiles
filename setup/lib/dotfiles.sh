@@ -1,12 +1,24 @@
 #!/bin/bash
 
-set -eu
+set -e
+
+HOME=""
+if [[ -n "$SUDO_USER" ]]; then
+    HOME="/home/${SUDO_USER}"
+else
+    HOME="/home/${USER}"
+fi
 
 CONFIGS_DIR="${HOME}/.config"
 DOTFILES_DIR="$(git rev-parse --show-toplevel)"
 DOTFILES_BACKUP_DIR="${HOME}/.config/backup"
 
-STOW_TARGET="$HOME"
+STOW_TARGET="${STOW_TARGET:-$HOME}"
+
+if ! command -v stow > /dev/null; then
+    echo "[*] Installing stow"
+    sudo pacman -S --needed --noconfirm stow
+fi
 
 ##
 # Stows arbitrary directories from the dotfiles dir into the config dir

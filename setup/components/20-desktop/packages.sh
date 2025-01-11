@@ -5,8 +5,11 @@ set -e
 echo "[*] Installing misc packages"
 sudo pacman -S --needed --noconfirm \
     brightnessctl \
-    bluetoothctl \
     dunst \
+    firefox \
     flameshot \
     network-manager-applet \
+    rofi \
     papirus-icon-theme
+
+    # bluetoothctl \
