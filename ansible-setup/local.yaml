@@ -1,0 +1,50 @@
+---
+- name: Pre-setup steps
+  hosts: localhost
+  tasks:
+    - name: Update and upgrade system
+      become: true
+      community.general.pacman:
+        update_cache: true          # equivalent to 'pacman -Sy'
+        upgrade: true               # equivalent to 'pacman -Su'
+
+    - name: Install essential packages
+      become: true
+      community.general.pacman:
+        name:
+          - git
+        state: present
+
+- name: Install Neovim
+  hosts: localhost
+  vars:
+    neovim_dir: "{{ ansible_env.HOME }}/source/neovim"
+  tasks:
+    - name: Install build dependencies
+      become: true
+      community.general.pacman:
+        name:
+          - base-devel
+          - cmake
+          - curl
+          - ninja
+        state: present
+
+    - name: Clone Neovim repo
+      ansible.builtin.git:
+        repo: "https://github.com/neovim/neovim"
+        dest: "{{ neovim_dir }}"
+        version: "v0.10.4"
+
+    - name: Build Neovim from source
+      ansible.builtin.command:
+        cmd: make CMAKE_BUILD_TYPE=RelWithDebInfo
+        chdir: "{{ neovim_dir }}"
+        creates: "{{ neovim_dir }}/build"
+
+    - name: Install Neovim
+      become: true
+      ansible.builtin.command:
+        cmd: make install
+        chdir: "{{ neovim_dir }}"
+        creates: "/usr/local/bin/nvim"
