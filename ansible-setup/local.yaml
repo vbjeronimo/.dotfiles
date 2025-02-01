@@ -19,6 +19,7 @@
   hosts: localhost
   vars:
     neovim_dir: "{{ ansible_env.HOME }}/source/neovim"
+    dotfiles_dir: "{{ ansible_env.HOME }}/.dotfiles"
   tasks:
     - name: Install build dependencies
       become: true
@@ -48,3 +49,9 @@
         cmd: make install
         chdir: "{{ neovim_dir }}"
         creates: "/usr/local/bin/nvim"
+
+    - name: Stow Neovim dotfiles
+      ansible.builtin.command:
+        cmd: stow nvim
+        chdir: "{{ dotfiles_dir }}"
+      changed_when: true
