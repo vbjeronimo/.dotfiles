@@ -35,7 +35,6 @@
       ansible.builtin.git:
         repo: "https://github.com/neovim/neovim"
         dest: "{{ neovim_dir }}"
-        version: "v0.10.4"
 
     - name: Build Neovim from source
       ansible.builtin.command:
