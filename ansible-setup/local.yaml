@@ -58,8 +58,14 @@
 - name: Install Language Servers
   hosts: localhost
   tasks:
-    - name: Install Lua LS
+    - name: Install lua-language-server
       become: true
       community.general.pacman:
         name: "lua-language-server"
+        state: present
+
+    - name: Install gopls
+      become: true
+      community.general.pacman:
+        name: "gopls"
         state: present
