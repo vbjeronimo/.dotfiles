@@ -54,3 +54,12 @@
         cmd: stow nvim
         chdir: "{{ dotfiles_dir }}"
       changed_when: true
+
+- name: Install Language Servers
+  hosts: localhost
+  tasks:
+    - name: Install Lua LS
+      become: true
+      community.general.pacman:
+        name: "lua-language-server"
+        state: present
