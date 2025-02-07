@@ -10,3 +10,4 @@ if status is-interactive
 end
 
 pyenv init - fish | source
+source ./autoadd.d/*

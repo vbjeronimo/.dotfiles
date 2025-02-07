@@ -1,4 +1,4 @@
 tmux/.config/tmux/plugins
 *work*
 
-starship.fish
+fish/.config/fish/autoadd.d
