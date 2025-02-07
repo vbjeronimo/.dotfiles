@@ -72,3 +72,26 @@
       community.general.pacman:
         name: "gopls"
         state: present
+
+- name: Setup Starship shell prompt
+  hosts: localhost
+  tags: starship
+  vars:
+    config_dir: "{{ ansible_env.HOME }}/.config"
+    dotfiles_dir: "{{ ansible_env.HOME }}/.dotfiles"
+  tasks:
+    - name: Install starship
+      become: true
+      community.general.pacman:
+        name: "starship"
+        state: present
+
+    - name: Ensure fish 'autoadd.d' directory
+      ansible.builtin.file:
+        path: "{{ config_dir }}/fish/autoadd.d"
+        state: directory
+
+    - name: Generate '.fish' setup
+      ansible.builtin.copy:
+        content: 'starship init fish | source'
+        dest: "{{ config_dir }}/fish/autoadd.d/starship.fish"
