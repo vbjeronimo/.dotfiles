@@ -1,6 +1,6 @@
 #!/bin/sh
 
-LAPTOP_OUTPUT="eDP1"
+LAPTOP_OUTPUT="eDP-1"
 LID_STATE_FILE="/proc/acpi/button/lid/LID0/state"
 
 read -r LS < "$LID_STATE_FILE"
