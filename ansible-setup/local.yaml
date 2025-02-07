@@ -17,6 +17,7 @@
 
 - name: Install Neovim
   hosts: localhost
+  tags: nvim
   vars:
     neovim_dir: "{{ ansible_env.HOME }}/source/neovim"
     dotfiles_dir: "{{ ansible_env.HOME }}/.dotfiles"
@@ -35,6 +36,7 @@
       ansible.builtin.git:
         repo: "https://github.com/neovim/neovim"
         dest: "{{ neovim_dir }}"
+        version: "stable"
 
     - name: Build Neovim from source
       ansible.builtin.command:
@@ -57,6 +59,7 @@
 
 - name: Install Language Servers
   hosts: localhost
+  tags: [nvim, lsp]
   tasks:
     - name: Install lua-language-server
       become: true
