@@ -95,3 +95,13 @@
       ansible.builtin.copy:
         content: 'starship init fish | source'
         dest: "{{ config_dir }}/fish/autoadd.d/starship.fish"
+
+- name: Setup fonts
+  hosts: localhost
+  tags: fonts
+  tasks:
+    - name: Install Nerd Fonts
+      become: true
+      community.general.pacman:
+        name: nerd-fonts
+        state: present
