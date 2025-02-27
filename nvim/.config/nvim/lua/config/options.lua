@@ -12,6 +12,10 @@ vim.opt.sidescrolloff = 10
 
 vim.opt.number = true
 vim.opt.relativenumber = true
+vim.opt.cursorline = true
+
+vim.opt.splitright = true
+vim.opt.splitbelow = true
 
 vim.keymap.set("n", "<leader><leader>x", "<cmd>source %<CR>")
 vim.keymap.set("n", "<leader>x", ":.lua<CR>")
